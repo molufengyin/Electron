@@ -2,7 +2,7 @@
   <div class="app-container erp-home">
     <el-alert
       class="demo-alert"
-      title="当前为本地虚拟数据，未连接后端。"
+      title="当前为本地虚拟数据，未连接后端。测试测试测试！！"
       type="info"
       show-icon
       :closable="false"

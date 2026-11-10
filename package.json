@@ -1,9 +1,13 @@
 {
   "name": "electron-demo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Electron demo",
   "license": "ISC",
   "author": "lilei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/molufengyin/Electron.git"
+  },
   "type": "commonjs",
   "main": "main.js",
   "scripts": {
@@ -12,10 +16,11 @@
     "build:web": "npm --prefix frontend run build:prod",
     "dist": "npm run build:web && electron-builder --win nsis",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "electron-forge publish"
+    "publish": "npm run build:web && electron-builder --win nsis --publish always"
   },
   "devDependencies": {
     "@electron-forge/cli": "^8.0.1",
+    "@electron-forge/maker-squirrel": "^8.0.1",
     "@electron-forge/publisher-github": "^8.0.1",
     "electron": "^45.2.3",
     "electron-builder": "^26.18.0"
@@ -42,6 +47,14 @@
         }
       ]
     },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "molufengyin",
+        "repo": "Electron",
+        "releaseType": "release"
+      }
+    ],
     "nsis": {
       "oneClick": false,
       "perMachine": false,
@@ -52,6 +65,7 @@
     }
   },
   "dependencies": {
-    "update-electron-app": "^3.3.0"
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.8.9"
   }
 }

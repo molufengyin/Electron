@@ -83,4 +83,12 @@ app.use(ElementPlus, {
   size: Cookies.get('size') || 'default'
 })
 
-app.mount('#app')
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    app.mount('#app')
+    document.body.classList.add('loaded')
+    window.setTimeout(() => {
+      document.getElementById('loader-wrapper')?.remove()
+    }, 400)
+  })
+})

@@ -1,6 +1,6 @@
 {
   "name": "electron-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Electron demo",
   "license": "ISC",
   "author": "lilei",
@@ -11,7 +11,8 @@
     "dev:web": "npm --prefix frontend run dev",
     "build:web": "npm --prefix frontend run build:prod",
     "dist": "npm run build:web && electron-builder --win nsis",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "electron-forge publish"
   },
   "devDependencies": {
     "@electron-forge/cli": "^8.0.1",
@@ -49,5 +50,8 @@
       "createStartMenuShortcut": true,
       "shortcutName": "ERP工作台"
     }
+  },
+  "dependencies": {
+    "update-electron-app": "^3.3.0"
   }
 }

@@ -1,16 +1,27 @@
-const { app, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow, Menu } = require('electron/main')
+
+Menu.setApplicationMenu(null)
+
 const path = require('node:path')
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1360,
+    height: 860,
+    minWidth: 1100,
+    minHeight: 700,
+    title: 'ERP 工作台',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
-  win.loadFile('index.html')
+  if (process.env.ELECTRON_START_URL) {
+    win.loadURL(process.env.ELECTRON_START_URL)
+    return
+  }
+
+  win.loadFile(path.join(__dirname, 'frontend', 'dist', 'index.html'))
 }
 
 app.whenReady().then(() => {

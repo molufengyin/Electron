@@ -8,7 +8,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win nsis",
+    "dev:web": "npm --prefix frontend run dev",
+    "build:web": "npm --prefix frontend run build:prod",
+    "dist": "npm run build:web && electron-builder --win nsis",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -19,16 +21,15 @@
   },
   "build": {
     "appId": "com.lilei.electron-demo",
-    "productName": "Electron Demo",
+    "productName": "ERP工作台",
     "directories": {
       "output": "dist"
     },
     "files": [
       "main.js",
       "preload.js",
-      "renderer.js",
-      "index.html",
-      "package.json"
+      "package.json",
+      "frontend/dist/**/*"
     ],
     "win": {
       "target": [
@@ -46,7 +47,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Electron Demo"
+      "shortcutName": "ERP工作台"
     }
   }
 }
